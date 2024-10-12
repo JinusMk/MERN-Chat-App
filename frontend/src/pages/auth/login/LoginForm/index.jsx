@@ -5,7 +5,7 @@ import { VStack } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../../store";
 
 
@@ -18,14 +18,14 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  const { setUser } = useAuthStore()
+  const { setUser, setIsLoggedIn } = useAuthStore()
 
   const submitHandler = async () => {
     setLoading(true);
     if (!email || !password) {
       toast({
         title: "Please Fill all the Feilds",
-        status: "warning",
+        variant: "warning",
         duration: 5000,
         isClosable: true,
         position: "bottom",
@@ -49,7 +49,7 @@ const LoginForm = () => {
 
       toast({
         title: "Login Successful",
-        status: "success",
+        variant: "success",
         duration: 5000,
         isClosable: true,
         position: "bottom",
@@ -57,12 +57,13 @@ const LoginForm = () => {
       setUser(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      navigate("/chats");
+      setIsLoggedIn(true);
+      navigate("/chat");
     } catch (error) {
       toast({
         title: "Error Occured!",
         description: error.response.data.message,
-        status: "error",
+        variant: "error",
         duration: 5000,
         isClosable: true,
         position: "bottom",
@@ -76,20 +77,25 @@ const LoginForm = () => {
       <FormControl id="email" isRequired>
         <FormLabel>Email Address</FormLabel>
         <Input
+          focusBorderColor="orange.400"
           value={email}
           type="email"
-          placeholder="Enter Your Email Address"
+          placeholder="Enter your email"
           onChange={(e) => setEmail(e.target.value)}
+          _placeholder={{ opacity: 1, color: 'grey.500' }}
         />
       </FormControl>
       <FormControl id="password" isRequired>
         <FormLabel>Password</FormLabel>
         <InputGroup size="md">
           <Input
+            focusBorderColor="orange.400"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type={show ? "text" : "password"}
-            placeholder="Enter password"
+            placeholder="Enter your password"
+            _placeholder={{ opacity: 1, color: 'grey.500' }}
+
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
@@ -99,7 +105,7 @@ const LoginForm = () => {
         </InputGroup>
       </FormControl>
       <Button
-        colorScheme="teal"
+        variant="primary"
         width="100%"
         style={{ marginTop: 15 }}
         onClick={submitHandler}
@@ -108,15 +114,14 @@ const LoginForm = () => {
         Login
       </Button>
       <Button
-        variant="outline"
-        colorScheme="teal"
+        variant='link'
         width="100%"
-        onClick={() => {
-          setEmail("guest@example.com");
-          setPassword("123456");
-        }}
+        // onClick={() => {
+        //   setEmail("guest@example.com");
+        //   setPassword("123456");
+        // }}
       >
-        Get Guest User Credentials
+        <Link to="/signup">Signup now</Link>
       </Button>
     </VStack>
   );

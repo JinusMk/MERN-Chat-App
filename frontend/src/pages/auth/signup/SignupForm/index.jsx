@@ -2,6 +2,7 @@ import { Input, InputGroup, InputRightElement, FormControl, FormLabel, Button, u
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import useAuthStore from "../../store";
 
 const SignupForm = () => {
   const [show, setShow] = useState(false);
@@ -15,13 +16,14 @@ const SignupForm = () => {
   const [password, setPassword] = useState();
   const [pic, setPic] = useState();
   const [picLoading, setPicLoading] = useState(false);
-
+  const { setUser, setIsLoggedIn } = useAuthStore()
+  
   const submitHandler = async () => {
     setPicLoading(true);
     if (!name || !email || !password || !confirmpassword) {
       toast({
         title: "Please Fill all the Feilds",
-        status: "warning",
+        variant: 'warning',
         duration: 5000,
         isClosable: true,
         position: "bottom",
@@ -32,7 +34,6 @@ const SignupForm = () => {
     if (password !== confirmpassword) {
       toast({
         title: "Passwords Do Not Match",
-        status: "warning",
         duration: 5000,
         isClosable: true,
         position: "bottom",
@@ -59,19 +60,21 @@ const SignupForm = () => {
       console.log(data);
       toast({
         title: "Registration Successful",
-        status: "success",
+        variant: 'success',
         duration: 5000,
         isClosable: true,
         position: "bottom",
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
       setPicLoading(false);
-      navigate("/chats");
+      setUser(data)
+      setIsLoggedIn(true)
+      navigate("/chat");
     } catch (error) {
       toast({
         title: "Error Occured!",
         description: error.response.data.message,
-        status: "error",
+        variant: 'error',
         duration: 5000,
         isClosable: true,
         position: "bottom",
@@ -85,7 +88,7 @@ const SignupForm = () => {
     if (pics === undefined) {
       toast({
         title: "Please Select an Image!",
-        status: "warning",
+        variant: 'warning',
         duration: 5000,
         isClosable: true,
         position: "bottom",
@@ -115,7 +118,7 @@ const SignupForm = () => {
     } else {
       toast({
         title: "Please Select an Image!",
-        status: "warning",
+        variant: "warning",
         duration: 5000,
         isClosable: true,
         position: "bottom",
@@ -130,25 +133,34 @@ const SignupForm = () => {
       <FormControl id="first-name" isRequired>
         <FormLabel>Name</FormLabel>
         <Input
+          focusBorderColor="orange.400"
+          _placeholder={{ opacity: 1, color: 'grey.500' }}
           placeholder="Enter Your Name"
           onChange={(e) => setName(e.target.value)}
+          value={name}
         />
       </FormControl>
       <FormControl id="email" isRequired>
         <FormLabel>Email Address</FormLabel>
         <Input
+          focusBorderColor="orange.400"
+          _placeholder={{ opacity: 1, color: 'grey.500' }}
           type="email"
           placeholder="Enter Your Email Address"
           onChange={(e) => setEmail(e.target.value)}
+          value={email}
         />
       </FormControl>
       <FormControl id="password" isRequired>
         <FormLabel>Password</FormLabel>
         <InputGroup size="md">
           <Input
+            focusBorderColor="orange.400"
+            _placeholder={{ opacity: 1, color: 'grey.500' }}
             type={show ? "text" : "password"}
             placeholder="Enter Password"
             onChange={(e) => setPassword(e.target.value)}
+            value={password}
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
@@ -161,9 +173,12 @@ const SignupForm = () => {
         <FormLabel>Confirm Password</FormLabel>
         <InputGroup size="md">
           <Input
+            focusBorderColor="orange.400"
+            _placeholder={{ opacity: 1, color: 'grey.500' }}
             type={show ? "text" : "password"}
             placeholder="Confirm password"
             onChange={(e) => setConfirmpassword(e.target.value)}
+            value={confirmpassword}
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
@@ -175,14 +190,16 @@ const SignupForm = () => {
       <FormControl id="pic">
         <FormLabel>Upload your Picture</FormLabel>
         <Input
+          focusBorderColor="orange.400"
           type="file"
           p={1.5}
           accept="image/*"
           onChange={(e) => postDetails(e.target.files[0])}
+          _placeholder={{ opacity: 1, color: 'grey.500' }}
         />
       </FormControl>
       <Button
-        colorScheme="blue"
+        variant="primary"
         width="100%"
         style={{ marginTop: 15 }}
         onClick={submitHandler}

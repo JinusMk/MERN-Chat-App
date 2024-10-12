@@ -3,9 +3,11 @@ import { devtools } from 'zustand/middleware';
 
 const useAuthStore = create(
   devtools((set) => ({
+    isLoggedIn: false,
     user: null,
     setUser: (user) => set({ user }),
-    logout: () => set({ user: null }),
+    setIsLoggedIn: (isLoggedIn) => set({ isLoggedIn }),
+    logout: () => set({ user: null, isLoggedIn: false }),
   }), { name: 'MERN-CHAT-APP-auth-store' })
 );
 

@@ -29,25 +29,28 @@ const sendMessage = asyncHandler(async (req, res) => {
     return res.sendStatus(400);
   }
 
-  var newMessage = {
+  const newMessage = {
     sender: req.user._id,
     content: content,
     chat: chatId,
   };
 
   try {
-    var message = await Message.create(newMessage);
+    // Create the new message
+    const createdMessage = await Message.create(newMessage);
+    // Fetch the created message and populate necessary fields
+    let fullMessage = await Message.findById(createdMessage._id)
+      .populate("sender", "name pic")
+      .populate("chat")
+      .populate({
+        path: "chat.users",
+        select: "name pic email",
+      });
 
-    message = await message.populate("sender", "name pic").execPopulate();
-    message = await message.populate("chat").execPopulate();
-    message = await User.populate(message, {
-      path: "chat.users",
-      select: "name pic email",
-    });
+    // Update the latest message in the chat
+    await Chat.findByIdAndUpdate(req.body.chatId, { latestMessage: fullMessage });
 
-    await Chat.findByIdAndUpdate(req.body.chatId, { latestMessage: message });
-
-    res.json(message);
+    res.json(fullMessage);
   } catch (error) {
     res.status(400);
     throw new Error(error.message);

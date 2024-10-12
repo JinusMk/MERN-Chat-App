@@ -1,41 +1,19 @@
 import {
-  createBrowserRouter,
   RouterProvider,
+  createBrowserRouter,
 } from "react-router-dom";
-import Chats from "./pages/chats";
 import './App.css'
-import Login from "./pages/auth/login";
-import SignUp from "./pages/auth/signup";
+import { ALL_ROUTES } from "./routes/config";
+import { Box } from "@chakra-ui/react";
 
-const router = createBrowserRouter([
-  {
-    path: "/chats",
-    element: (
-      <Chats />
-    ),
-    children: [{
-      path: ":id",
-      element: <div>This is Chat screen</div>,
-      errorElement: <div>Oops! There was an error.</div>,
-    },
-   ]
-  },
-  {
-    path: '/login',
-    element: <Login />,
-  },
-  {
-    path: '/signup',
-    element: <SignUp />,
-  },
-]);
+const router = createBrowserRouter(ALL_ROUTES);
 
 function App() {
   return (
-    <div className="App">
-      <RouterProvider router={router}/>
-    </div>
-  )
+    <Box minHeight="100vh" display="flex" background="grey.900">
+      <RouterProvider router={router} />
+    </Box>
+  );
 }
 
-export default App
+export default App;

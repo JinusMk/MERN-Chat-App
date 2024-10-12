@@ -20,10 +20,10 @@ const chatModel = mongoose.Schema(
             },
       },
       {
-            timestamps: true,
+            timestamps: true
       }
 )
 
 const Chat = mongoose.model("Chat", chatModel)
 
-module.exports = { Chat }
+module.exports = Chat
