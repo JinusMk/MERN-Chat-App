@@ -1,4 +1,4 @@
-import { Avatar, Box } from "@chakra-ui/react";
+import { Avatar, Box, Text } from "@chakra-ui/react";
 import { Tooltip } from "@chakra-ui/react";
 import ScrollableFeed from "react-scrollable-feed";
 import {
@@ -32,17 +32,19 @@ const ScrollableChat = () => {
               </Tooltip>
             )}
             <Box
-              bg={m.sender._id === user._id ? "grey.800" : "orange.400"}
+              bg={m.sender._id === user._id ? "grey.800" : "white"}
               style={{
                 marginLeft: isSameSenderMargin(messages, m, i, user._id),
                 marginTop: isSameUser(messages, m, i, user._id) ? 8 : 12,
                 borderRadius: m.sender._id !== user._id ? "0 16px 16px 16px": "16px 0 16px 16px",
-                color: m.sender._id !== user._id ? "white": "black",
+                color: m.sender._id !== user._id ? "black": "black",
                 padding: "8px 16px",
                 maxWidth: "75%",
               }}
             >
-              {m.content}
+              <Text fontSize="1rem">
+                {m.content}
+              </Text>
             </Box>
           </Box>
         ))}

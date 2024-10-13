@@ -49,21 +49,20 @@ const MyChats = () => {
       bg="grey.900"
     >
       <Box
-        pb={3}
-        px={3}
-        fontSize={{ base: "28px", md: "30px" }}
-        fontFamily="Work sans"
+        p={4}
         display="flex"
         w="100%"
         justifyContent="space-between"
         alignItems="center"
+        borderBottomColor="grey.800"
+        borderBottomWidth="1px"
       >
-        My Chats
         <GroupChatModal>
           <Button
+            colorScheme="orange"
+            width='346px'
             display="flex"
-            fontSize={{ base: "17px", md: "10px", lg: "17px" }}
-            rightIcon={<AddIcon />}
+            rightIcon={<AddIcon size="sm" />}
           >
             New Group Chat
           </Button>

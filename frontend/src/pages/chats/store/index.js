@@ -21,6 +21,19 @@ const useChatStore = create(
     sendMessageLoading: false,
     newMessage: '',
     setNewMessage: (newMessage) => set({ newMessage }),
+    groupChatName: '',
+    groupChatSearch: '',
+    selectedUsers: [],
+    groupSearchLoading: false,
+    groupSearchResult: [],
+    createGroupLoading: false,
+    searchLoading: false,
+    searchQuery: '',
+    searchResult: [],
+    setSearchQuery: (searchQuery) => set({ searchQuery }),
+    setGroupChatName: (groupChatName) => set({ groupChatName }),
+    setSelectedUsers: (selectedUsers) => set({ selectedUsers }),
+    setGroupChatSearch: (groupChatSearch) => set({ groupChatSearch }),
     fetchMessages: async ({ headers, toast, chatId }) => {
       set({
         messagesLoading: true,
@@ -77,6 +90,37 @@ const useChatStore = create(
         })
       }
     },
+    fetchUsers: async ({ headers, toast, type }) => {
+      const loaderKey = type === "search" ? "searchLoading" : "groupSearchLoading"
+      const searchKey = type === "search" ? "searchQuery" : "groupChatSearch"
+      const dataKey = type === "search" ? "searchResult" : "groupSearchResult"
+      
+      set({
+        [loaderKey]: true
+      })
+      try {
+        const config = {
+          headers,
+        };
+
+        const { data } = await axios.get(`/api/user?search=${get()?.[searchKey]}`, config);
+        set({ [dataKey]: data });
+        
+      } catch (error) {
+        toast({
+          title: "Error Occured!",
+          description: "Failed to Load the Search Results",
+          variant: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+      } finally {
+        set({
+          [loaderKey]: false
+        })
+      }
+    },
     sendMessage: async ({ headers, toast, body, socket }) => {
       set({
         sendMessageLoading: true,
@@ -103,6 +147,42 @@ const useChatStore = create(
       }finally {
         set({
           sendMessageLoading: false
+        })
+      }
+    },
+    createGroup: async ({ headers, toast, body }) => {
+      set({
+        createGroupLoading: true,
+      })
+      try {
+         const config = {
+           headers: headers,
+         };
+         const { data } = await axios.post("/api/chat/group", body, config );
+         set({
+          chats: [data, ...get().chats],
+          groupChatName: '',
+          selectedUsers: []
+         })
+         toast({
+          title: "New Group Chat Created!",
+          variant: "success",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+      }catch (err) {
+        toast({
+          title: "Error Occured!",
+          description: "Failed to create the Group",
+          variant: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+      }finally {
+        set({
+          createGroupLoading: false
         })
       }
     }

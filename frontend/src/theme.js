@@ -1,4 +1,5 @@
 import { extendTheme } from '@chakra-ui/react';
+import '@fontsource/Inter'
 // import { mode } from '@chakra-ui/theme-tools';
 
 // const styles = {
@@ -180,7 +181,7 @@ const COLORS = {
     200: '#9a3f21',
     300: '#c14f29',
     400: '#ff6937',
-    500: '#fa9269',
+    500: '#ff6937',
     600: '#fabda5',
     700: '#f7dfd7',
     800: '#fff3ef',
@@ -243,26 +244,6 @@ const COLORS = {
 };
 
 const components = {
-      Button: {
-            variants: {
-                  primary : {
-                        bg: "orange.400",
-                        color: COLORS.white,
-                         _hover: {
-                              bg: "orange.300",
-                        },
-                        _disabled: {
-                              bg: "orange.700", 
-                                _hover: {
-                                    bg: "orange.700 !important" ,
-                              },
-                        },
-                  },
-                  link : {
-                        color: "orange.400",
-                  }
-            }
-      },
       Alert: {
                variants: {
                   success: {
@@ -294,6 +275,10 @@ const components = {
 }
 
 const theme = extendTheme({
+  fonts: {
+    heading: `'Inter', sans-serif`,
+    body: `'Inter', sans-serif`,
+  },
   colors: {
     ...COLORS
   },

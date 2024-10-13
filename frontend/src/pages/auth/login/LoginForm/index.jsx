@@ -105,7 +105,7 @@ const LoginForm = () => {
         </InputGroup>
       </FormControl>
       <Button
-        variant="primary"
+        colorScheme="orange"
         width="100%"
         style={{ marginTop: 15 }}
         onClick={submitHandler}

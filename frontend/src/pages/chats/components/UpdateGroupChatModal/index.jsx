@@ -209,14 +209,13 @@ const UpdateGroupChatModal = () => {
 
   return (
     <>
-      <IconButton d={{ base: "flex" }} icon={<ViewIcon />} onClick={onOpen} />
+      <IconButton background="grey.800" display={{ base: "flex" }} icon={<ViewIcon />} onClick={onOpen} />
 
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader
             fontSize="35px"
-            fontFamily="Work sans"
             display="flex"
             justifyContent="center"
           >
