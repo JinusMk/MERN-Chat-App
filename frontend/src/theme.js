@@ -1,5 +1,5 @@
 import { extendTheme } from '@chakra-ui/react';
-import '@fontsource/inter';
+// import '@fontsource/inter';
 
 const COLORS = {
   transparent: 'transparent',
@@ -141,8 +141,8 @@ const components = {
 
 const theme = extendTheme({
   fonts: {
-    heading: "Inter, sans-serif",
-    body: "Inter, sans-serif",
+    // heading: "Inter, sans-serif",
+    // body: "Inter, sans-serif",
   },
   colors: {
     ...COLORS
