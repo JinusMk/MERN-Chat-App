@@ -8,6 +8,11 @@ export default defineConfig(({ mode }) => {
   
   return {
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      external: ['@fontsource/inter'],
+    },
+  },
   server: {
     host: true,
     port : 5000,

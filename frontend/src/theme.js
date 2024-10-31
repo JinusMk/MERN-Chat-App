@@ -1,140 +1,9 @@
 import { extendTheme } from '@chakra-ui/react';
-import '@fontsource/Inter'
-// import { mode } from '@chakra-ui/theme-tools';
-
-// const styles = {
-//   global: props => ({
-//     body: {
-//       color: mode('gray.800', 'whiteAlpha.900')(props),
-//       bg: mode('gray.100', '#141214')(props),
-//     },
-//   }),
-// };
-
-// export const lightTheme = {
-//     primary: {
-//         300: '#ECEDF0',
-//         400: '#FDFDFF',
-//     },
-//     secondary: {
-//         300: '#646464',
-//         400: '#424242',
-//     },
-//     brand: {
-//         300: '#7C82FB',
-//         400: '#5F63FC',
-//     },
-// };
-
-// export const darkTheme = {
-//     primary: {
-//         300: '#646464',
-//         400: '#424242',
-//     },
-//     secondary: {
-//         300: '#ECEDF0',
-//         400: '#FDFDFF',
-//     },
-//     brand: {
-//         300: '#94d3ac',
-//         400: '#29c7ac',
-//     },
-// };
-// const lightTheme = {
-//     primary: COLORS.white,
-//     inversePrimary: COLORS.black,
-//     accent: COLORS.orange[400],
-//     negative: COLORS.red[400],
-//     positive: COLORS.green[400],
-//     positiveLight: COLORS.green[500],
-//     warning: COLORS.yellow[400],
-//     background: {
-//       transparent: COLORS.transparent,
-//       primary: COLORS.grey[900],
-//       secondary: COLORS.grey[800],
-//       tertiary: COLORS.white,
-//       inversePrimary: COLORS.black,
-//       inverseSecondary: COLORS.grey[100],
-//       inverseTertiary: COLORS.grey[200],
-//       disabled: COLORS.grey[800],
-//       disabledDark: COLORS.grey[700],
-//       overlayDark: COLORS.overlayDark[100],
-//       overlayLight: COLORS.overlayLight[50],
-//       overlayLightSecondary: COLORS.overlayLight[200],
-//       accent: COLORS.orange[400],
-//       negative: COLORS.red[400],
-//       warning: COLORS.yellow[400],
-//       positive: COLORS.green[400],
-//       accentLight: COLORS.orange[700],
-//       negativeLight: COLORS.red[700],
-//       negativeSecondary: COLORS.red[800],
-//       warningLight: COLORS.yellow[700],
-//       positiveLight: COLORS.green[700],
-//       accentDark: COLORS.orange[300],
-//       negativeDark: COLORS.red[300],
-//       warningDark: COLORS.yellow[300],
-//       positiveDark: COLORS.green[300],
-//       primaryOverlayDark: COLORS.overlayDark[100],
-//       secondaryOverlayDark: COLORS.overlayDark[50],
-//     },
-//     text: {
-//       primary: COLORS.black,
-//       primaryDisabled: COLORS.grey[700],
-//       secondary: COLORS.grey[300],
-//       tertiary: COLORS.grey[400],
-//       inversePrimary: COLORS.white,
-//       inverseSecondary: COLORS.grey[600],
-//       inverseTertiary: COLORS.grey[500],
-//       disabled: COLORS.grey[500],
-//       positiveDark: COLORS.green[300],
-//       blue: COLORS.cyan[400],
-//       onBackground: COLORS.white,
-//       accent: COLORS.orange[400],
-//       negative: COLORS.red[400],
-//       negativeLight: COLORS.orange[200],
-//       negativeSecondary: COLORS.red[500],
-//       positive: COLORS.yellow[400],
-//       warning: COLORS.green[400],
-//     },
-//     border: {
-//       primary: COLORS.grey[700],
-//       primaryLight: COLORS.grey[800],
-//       transparent: COLORS.overlayDark[50],
-//       highlight: COLORS.black,
-//       inversePrimary: COLORS.grey[200],
-//       inverseTransparent: COLORS.overlayLight[100],
-//       inverseHighlight: COLORS.white,
-//       disabled: COLORS.grey[700],
-//       accent: COLORS.orange[400],
-//       accentSemiLight: COLORS.orange[600],
-//       accentLight: COLORS.orange[700],
-//       negative: COLORS.red[400],
-//       negativeLight: COLORS.red[700],
-//       warning: COLORS.yellow[600],
-//       positive: COLORS.green[600],
-//       lightDivider: COLORS.grey[900],
-//       check: COLORS.grey[600],
-//     },
-//     tabs: {
-//       inactive: COLORS.grey[500],
-//       hover: COLORS.grey[700],
-//     },
-//     badge: {
-//       tertiary: COLORS.grey[500],
-//     },
-//     progressBar: {
-//       accepted: COLORS.cyan[400],
-//       attempted: COLORS.yellow[400],
-//       success: COLORS.green[500],
-//       failed: COLORS.red[400],
-//       primary: COLORS.orange[400],
-//       darkGreen: COLORS.green[400],
-//     },
-//     social: {
-//       google: COLORS.googleBlue,
-//       facebook: COLORS.facebookBlue,
-//     },
-//   }
+import '@fontsource/inter';
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
 
 const COLORS = {
   transparent: 'transparent',
@@ -248,26 +117,26 @@ const components = {
                variants: {
                   success: {
                         container: {
-                              bg: "green.500", // Custom success background color
-                              color: "white",  // Custom text color for success
+                              bg: "green.500",
+                              color: "white", 
                         },
                   },
                   error: {
                         container: {
-                              bg: "red.500",   // Custom error background color
-                              color: "white",  // Custom text color for error
+                              bg: "red.500",  
+                              color: "white", 
                         },
                   },
                   warning: {
                         container: {
-                              bg: "yellow.400",  // Custom warning background color
-                              color: "white",    // Custom text color for warning
+                              bg: "yellow.400",
+                              color: "white",  
                         },
                   },
                   info: {
                         container: {
-                              bg: "blue.400",   // Custom info background color
-                              color: "white",   // Custom text color for info
+                              bg: "blue.400",
+                              color: "white",
                         },
                   },
             }
