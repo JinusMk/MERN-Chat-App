@@ -18,8 +18,8 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
-import UserBadgeItem from "../userAvatar/UserBadgeItem";
-import UserListItem from "../userAvatar/UserListItem";
+import UserBadgeItem from "../UserAvatar/UserBadgeItem";
+import UserListItem from "../UserAvatar/UserListItem";
 import useChatStore from "../../store";
 import useAuthStore from "../../../auth/store";
 import { useParams } from "react-router-dom";

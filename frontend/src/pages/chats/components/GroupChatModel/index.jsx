@@ -14,8 +14,8 @@ import {
   Box,
 } from "@chakra-ui/react";
 
-import UserBadgeItem from "../userAvatar/UserBadgeItem";
-import UserListItem from "../userAvatar/UserListItem";
+import UserBadgeItem from "../UserAvatar/UserBadgeItem";
+import UserListItem from "../UserAvatar/UserListItem";
 import useChatStore from "../../store";
 import useDebounce from "../../../../common/hooks/useDebounce";
 import useAuthHeaders from "../../../../common/hooks/useAuthHeaders";
