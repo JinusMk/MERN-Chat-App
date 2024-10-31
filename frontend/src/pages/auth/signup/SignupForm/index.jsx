@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import useAuthStore from "../../store";
+import { Link } from "react-router-dom";
 
 const SignupForm = () => {
   const [show, setShow] = useState(false);
@@ -57,7 +58,6 @@ const SignupForm = () => {
         },
         config
       );
-      console.log(data);
       toast({
         title: "Registration Successful",
         variant: 'success',
@@ -206,6 +206,12 @@ const SignupForm = () => {
         isLoading={picLoading}
       >
         Sign Up
+      </Button>
+      <Button
+        variant='link'
+        width="100%"
+      >
+        <Link to="/login">Login now</Link>
       </Button>
     </VStack>
   );

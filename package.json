@@ -4,20 +4,16 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon backend/server.js"
+    "start": "concurrently \"yarn start-client\" \"yarn start-server\"",
+    "start-client": "cd frontend && yarn dev",
+    "start-server": "cd backend && npm start"
   },
   "author": "Jinus Mk",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.1",
-    "bcryptjs": "^2.4.3",
-    "dotenv": "^16.4.5",
-    "express": "^4.21.0",
-    "express-async-handler": "^1.2.0",
-    "jsonwebtoken": "^9.0.2",
-    "mongodb": "^6.9.0",
-    "mongoose": "^8.7.0",
-    "nodemon": "^3.1.7",
-    "socket.io": "^4.8.0"
+    "nodemon": "^3.1.7"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
   }
 }

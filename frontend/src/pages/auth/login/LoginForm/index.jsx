@@ -116,10 +116,6 @@ const LoginForm = () => {
       <Button
         variant='link'
         width="100%"
-        // onClick={() => {
-        //   setEmail("guest@example.com");
-        //   setPassword("123456");
-        // }}
       >
         <Link to="/signup">Signup now</Link>
       </Button>
